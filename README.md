@@ -5,7 +5,7 @@ This is a simple calculator app built using React, Vite and Tailwind CSS. The pu
 ## ToDo
 
 Add Global State using Zustand
-Add ability for user to enter multiple numbers per "input"
+~~ Add ability for user to enter multiple numbers per "input" ~~
 Add ability for user to clear input
 
 Add <Display /> component

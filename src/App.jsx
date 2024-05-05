@@ -37,32 +37,38 @@ function findCalc(a, b, op) {
 
 function App() {
 
-  let [ result, setResult ] = useState(0);
-  let [ input, setInput ] = useState(0);
-  let [ mem, setMem ] = useState(0);
+  let [ result, setResult ] = useState(null);
+  let [ input, setInput ] = useState(null);
+  let [ mem, setMem ] = useState(null);
   let [ operator, setOperator ] = useState(null);
 
   const numberButtonClick = buttonValue => {
-    setInput(buttonValue);
+    if(input) {
+      setInput(prevInput => (prevInput*10) + buttonValue)
+    } else {
+      setInput(buttonValue)
+    }
   }
 
   const opClick = buttonValue => {
     if (buttonValue === 'CLR') {
-      setResult(0);
-      setInput(0);
-      setMem(0);
+      setResult(null);
+      setInput(null);
+      setMem(null);
       setOperator(null);
       return
     } else if (buttonValue === '=') {
       let answer = findCalc(mem, input, operator)
       setResult(answer)
-      setMem(0)
-      setInput(0)
+      setMem(null)
+      setInput(null)
       setOperator(null)
       return
+    } else {
+      setMem(input)
+      setOperator(buttonValue)
+      setInput(null)
     }
-    setMem(input)
-    setOperator(buttonValue)
   }
 
   return (
@@ -90,16 +96,19 @@ function App() {
         <Operator operation="*" opClick={opClick} />
       </div>
       <div className='grid-flow-row text-center p-1'>
-        <Button value={'('} />
+        <Button value={'()'} />
         <Button value={0} numberButtonClick={numberButtonClick} />
-        <Button value={')'} />
+        <Button value={'CE'} />
         <Operator operation="/" opClick={opClick} />
       </div>
       <div className="grid-flow-row text-center p-1 pt-3 ">
         <Operator operation={"="} opClick={opClick} />
         <Operator operation={"CLR"} opClick={opClick} />
       </div>
-      <div className="grid-flow-row text-center pt-4 font-size-xl font-black">
+      <div className="grid-flow-row text-center pt-4 font-black">
+        <h5 className='text-xl text-teal-700'>Input: {input}</h5>
+        <h5 className='text-xl text-teal-700'>Memory: {mem}</h5>
+        <h5 className='text-xl text-teal-700'>Operator: {operator}</h5>
         <h3 className='text-3xl text-blue-700'>Result: {result}</h3>
       </div>
 
