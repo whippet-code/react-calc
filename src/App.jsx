@@ -1,27 +1,10 @@
 import { useState } from 'react';
 
+import Button from './components/Button'
+import Operator from './components/Operator'
+import Display from './components/Display'
 import './App.css'
 
-function Button({ value, numberButtonClick }) {
-  return (
-    <button 
-      key={value}
-      className="bg-sky-500 hover:bg-sky-700 text-white font-bold p-6 rounded mx-1"
-      onClick={() => numberButtonClick(value)} >
-      {value}
-    </button>
-)}
-
-function Operator({ operation, opClick }) {
-  return (
-    <button 
-      key={"key"+operation}
-      className="bg-sky-500 hover:bg-sky-700 text-white font-bold p-6 rounded mx-1 operatorButton"
-      onClick={() => opClick(operation)} >
-      {operation}
-    </button>
-  )
-}
 
 function findCalc(a, b, op) {
   if (op === "+") {
@@ -105,13 +88,7 @@ function App() {
         <Operator operation={"="} opClick={opClick} />
         <Operator operation={"CLR"} opClick={opClick} />
       </div>
-      <div className="grid-flow-row text-center pt-4 font-black">
-        <h5 className='text-xl text-teal-700'>Input: {input}</h5>
-        <h5 className='text-xl text-teal-700'>Memory: {mem}</h5>
-        <h5 className='text-xl text-teal-700'>Operator: {operator}</h5>
-        <h3 className='text-3xl text-blue-700'>Result: {result}</h3>
-      </div>
-
+      <Display result={result} input={input} operator={operator} mem={mem} />
     </div>
   )
 }
