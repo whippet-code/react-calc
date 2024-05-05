@@ -79,14 +79,12 @@ function App() {
         <Operator operation="*" opClick={opClick} />
       </div>
       <div className='grid-flow-row text-center p-1'>
-        <Button value={'()'} />
+        <Operator operation={"CLR"} opClick={opClick} />
         <Button value={0} numberButtonClick={numberButtonClick} />
-        <Button value={'CE'} />
         <Operator operation="/" opClick={opClick} />
       </div>
       <div className="grid-flow-row text-center p-1 pt-3 ">
         <Operator operation={"="} opClick={opClick} />
-        <Operator operation={"CLR"} opClick={opClick} />
       </div>
       <Display result={result} input={input} operator={operator} mem={mem} />
     </div>
