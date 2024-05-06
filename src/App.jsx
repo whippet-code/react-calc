@@ -83,7 +83,7 @@ function App() {
         <Button value={0} numberButtonClick={numberButtonClick} />
         <Operator operation="/" opClick={opClick} />
       </div>
-      <div className="grid-flow-row text-center p-1 pt-3 ">
+      <div className="grid-flow-row text-center p-1 pt-3">
         <Operator operation={"="} opClick={opClick} />
       </div>
       <Display result={result} input={input} operator={operator} mem={mem} />
